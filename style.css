@@ -1,0 +1,200 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(to bottom right, #ffe0f0, #ffd3e0);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  position: relative;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 30px 20px;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+  display: none;
+}
+
+.card.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  display: block;
+  animation: fadeIn 0.8s ease;
+}
+
+h2 {
+  color: #7d294e;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.lock {
+  font-size: 48px;
+  margin: 10px auto;
+}
+
+.question {
+  font-size: 1.2em;
+  margin: 20px 0;
+  color: #632c47;
+}
+
+input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #ffb6c1;
+  font-size: 1em;
+  margin-bottom: 15px;
+}
+
+button {
+  background: #d65a86;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  font-size: 1em;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.tip {
+  font-size: 0.9em;
+  color: #7d294e;
+  margin-top: 15px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hearts::before,
+.hearts::after {
+  content: '💖';
+  position: fixed;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  animation: floatHearts 8s infinite linear;
+  white-space: nowrap;
+  opacity: 0.4;
+}
+
+@keyframes floatHearts {
+  0% { transform: translate(-50%, 0); opacity: 0.4; }
+  100% { transform: translate(-50%, -120vh); opacity: 0; }
+}
+
+/* Záblesk mezi levely */
+.flash-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #fff 0%, #ffd6e8 40%, #ff9ac0 80%);
+  opacity: 0;
+  z-index: 999;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.flash-overlay.visible {
+  opacity: 1;
+}
+
+#toggle-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff0f5;
+  color: #7d294e;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 0.9em;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  z-index: 1000;
+}
+#finale {
+  background: linear-gradient(145deg, #ffe1ec, #ffcde4);
+  animation: fadeIn 1s ease;
+}
+
+#certificate {
+  border: 4px solid #ffb6c1;
+  padding: 30px;
+  text-align: center;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#certificate .name {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #632c47;
+}
+
+#certificate .title {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  color: #7d294e;
+}
+
+#certificate .signature {
+  font-family: 'Cursive', sans-serif;
+  font-size: 1em;
+  color: #7d294e;
+}
+
+.hidden-message {
+  display: none;
+  margin-top: 40px;
+  font-size: 1.1em;
+  color: #632c47;
+  animation: fadeIn 1s ease;
+}
+.hidden-message.show {
+  display: block;
+}

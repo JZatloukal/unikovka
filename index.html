@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Romantická Únikovka</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section id="intro" class="card active">
+    <h1>✨ Týnušky úniková hra ✨</h1>
+    <p>
+      Ahoj lásko! 💖<br>
+      Dneska máš svátek – a místo standartního dárku jsem ti připravil něco jiného.<br>
+      Únikovku. Ale ne ledajakou! Je celá o nás. 🫶
+    </p>
+    <p>
+      Čeká tě 8 zámků. Každý zámek se odemkne jen správnou odpovědí na otázku z našeho společného příběhu.<br>
+      Vzpomínky, momenty, trapasy, výhry... Všechno, co tvoří nás. 🧠❤️
+    </p>
+    <p>
+      Nespěchej. Užij si to. A pokud někde tápeš, víš komu napsat😘
+    </p>
+    <button onclick="startGame()">Začít hru</button>
+  </section>
+  <div class="hearts"></div>
+  <main>
+    <section id="level1" class="card">
+      <h2>Level 1</h2>
+      <div class="lock" id="lock1">🔒</div>
+      <p class="question">Co bylo jako první jídlo, co jsi ode mě kdy dostala?</p>
+      <input type="text" id="answer1" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(1)">Odemykám</button>
+      <p class="tip">💡 Tip: Bouchnul jsem se u toho do hlavy o strop 🙃❤️</p>
+    </section>
+
+    <section id="level2" class="card">
+      <h2>Level 2</h2>
+      <div class="lock" id="lock2">🔒</div>
+      <p class="question">Ve kterém městě jsme se poprvé začali bavit natolik, že z toho vznikla láska?</p>
+      <input type="text" id="answer2" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(2)">Odemykám</button>
+      <p class="tip">💡 Tip: Mají tam moc krásné nádraží, které se ti moc líbilo 😌❤️</p>
+    </section>
+
+    <section id="level3" class="card">
+      <h2>Level 3</h2>
+      <div class="lock" id="lock3">🔒</div>
+      <p class="question">Jakou hru jsme spolu hráli ve vlaku, když jsme seděli naproti sobě?</p>
+      <input type="text" id="answer3" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(3)">Odemykám</button>
+      <p class="tip">💡 Tip: Už jsem chtěl zatahovat závěsy a hrát si na Gynekologa 😈</p>
+    </section>
+    <section id="level4" class="card">
+      <h2>Level 4</h2>
+      <div class="lock" id="lock4">🔒</div>
+      <p class="question">Co jsem ti nabídl ochutnat na našem prvním rande, i když jsem věděl, že ti to asi nebude chutnat?</p>
+      <input type="text" id="answer4" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(4)">Odemykám</button>
+      <p class="tip">💡 Tip: Byl to zeleninový darebák s fialovým kabátkem 😌❤️</p>
+    </section>
+    <section id="level5" class="card">
+      <h2>Level 5</h2>
+      <div class="lock" id="lock5">🔒</div>
+      <p class="question">Jakou první zprávu jsi ode mě dostala, ze které si děláme srandu do dneška?</p>
+      <input type="text" id="answer5" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(5)">Odemykám</button>
+      <p class="tip">💡 Tip: Ano, bylo to trapný ale jsi rizzmaster 😘</p>
+    </section>
+    <section id="level6" class="card">
+      <h2>Level 6</h2>
+      <div class="lock" id="lock6">🔒</div>
+      <p class="question">Jaké místo jsme spolu úspěšně (ne)opustili díky šifrám a nápovědám?</p>
+      <input type="text" id="answer6" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(6)">Odemykám</button>
+      <p class="tip">💡 Tip: "Aspoň jsme se nepohádali - Týnuška 2024"</p>
+    </section>
+    <section id="level7" class="card">
+      <h2>Level 7</h2>
+      <div class="lock" id="lock7">🔒</div>
+      <p class="question">Co jsi mi slíbila udělat, když jsi prohrála v minigolfu?</p>
+      <input type="text" id="answer7" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(7)">Odemykám</button>
+      <p class="tip">💡 Tip: Neboj, na svatbě to vytáhnu 😙</p>
+    </section>
+    <section id="level8" class="card">
+      <h2>Level 8</h2>
+      <div class="lock" id="lock8">🔒</div>
+      <p class="question">Na jakém místě jsi vyhrála spoustu plyšáků?</p>
+      <input type="text" id="answer8" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(8)">Odemykám</button>
+      <p class="tip">💡 Tip: Porazil jsem tě tam v každé hře co tam byla 😌</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+
+  <audio id="background-music" autoplay loop>
+    <source src="Escape Room Music.mp3" type="audio/mpeg">
+    Tvůj prohlížeč nepodporuje přehrávání audia.
+  </audio>
+  
+  <button id="toggle-music">🔊 Hudba</button>
+
+  <section id="finale" class="card">
+    <div id="certificate">
+      <h2>🎓 Certifikát</h2>
+      <p class="name">Kristýna Ferencová</p>
+      <p class="title">Nejlepší přítelkyně na světě</p>
+      <p class="signature">S láskou, Honzulka 💌</p>
+    </div>
+    <button onclick="downloadCertificate()">📥 Stáhnout certifikát</button>
+    <div id="after-download" class="hidden-message">
+      <p>Ať tě nikdy nenapadne pochybovat, že tě miluju.</p>
+      <p> Honzulka 💗</p>
+    </div>
+  </section>
+
+  <!-- html2canvas knihovna pro stažení jako obrázek -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
