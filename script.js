@@ -1,20 +1,49 @@
 function checkAnswer(level) {
   const answers = {
-    1: ["chleba s rajcetem", "chléb s rajčetem", "chleba s rajčetem"],
-    2: ["brno", "v brně", "brně", "do brna"],
+    1: ["chleba s rajcetem", "chléb s rajčetem", "chleba s rajčetem", "chlebík a rajčátko"],
+    2: ["brno", "v brně", "brně", "do brna", "V Brně", "V brně"],
     3: ["slovní fotbal", "fotbal", "slovní", "slovní hra", "hra na slova"],
-    4: ["lilek", "baklažán", "ten lilek", "kus lilku"],
-    6: ["na tady máš chlapáku"],
-    7: ["úniková místnost", "uniková místnost", "escape room", "escape", "room", "ta únikovka"],
+    4: ["lilek", "baklažán", "ten lilek", "kus lilku","Lilek"],
+    6: ["Na tady máš chlapáku", "na tady mas chlapaku"],
+    7: ["úniková místnost", "uniková místnost", "escape room", "escape", "room", "ta únikovka", "Únikovou místnost", "úniková místnost", "Únikovou Místnost"],
     8: ["prezentaci", "prezentace", "udělat prezentaci", "slíbila jsem ti prezentaci"],
-    9: ["arkády", "levels", "V arkádách"],
+    9: ["arkády", "levels", "V arkádách", "Arkády"],
   };
   const input = document.getElementById("answer" + level).value.toLowerCase().trim();
   const lock = document.getElementById("lock" + level);
 
   if (answers[level].includes(input)) {
     lock.textContent = "🔓";
-    setTimeout(() => flashTransition(level), 1000);
+    const feedbackEl = document.getElementById("answer-feedback" + level);
+    if (feedbackEl) {
+      feedbackEl.textContent = "✔️ Správná odpověď!";
+      feedbackEl.classList.add("correct-feedback");
+      feedbackEl.style.color = "limegreen";
+      feedbackEl.style.fontWeight = "bold";
+    }
+    setTimeout(() => {
+      const momentCard = document.getElementById("moment" + level);
+      if (momentCard) {
+        const currentCard = document.getElementById("level" + level);
+        currentCard.classList.remove("active");
+        momentCard.classList.add("active");
+      } else {
+        flashTransition(level);
+      }
+      // --- Zobrazit tlačítko Pokračovat místo automatického přechodu ---
+      if (momentCard) {
+        const continueBtn = document.createElement("button");
+        continueBtn.textContent = "➡️ Pokračovat";
+        continueBtn.className = "continue-btn";
+        continueBtn.onclick = () => {
+          momentCard.classList.remove("active");
+          const nextLevel = document.getElementById("level" + (level + 1));
+          if (nextLevel) nextLevel.classList.add("active");
+          continueBtn.remove();
+        };
+        momentCard.appendChild(continueBtn);
+      }
+    }, 1000);
   } else {
     lock.textContent = "❌";
     setTimeout(() => lock.textContent = "🔒", 1500);
@@ -142,7 +171,7 @@ let heartsTimer = null;
 let heartsSpawnInterval = null;
 let heartsTimeLeft = 20;
 let heartsScore = 0;
-const HEARTS_GOAL = 12;
+const HEARTS_GOAL = 23;
 
 function startHeartsGame() {
   const area = document.getElementById('hearts-area');

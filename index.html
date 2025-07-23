@@ -25,6 +25,8 @@
     <p>
       Nespěchej. Užij si to. A pokud někde tápeš, víš komu napsat😘
     </p>
+    <p>PS: Na konci tě čeká tajná zpráva, takže hodně štěstí 😘</p>
+    
     <button onclick="startGame()">Začít hru</button>
   </section>
 
@@ -36,8 +38,16 @@
       <div class="lock" id="lock1">🔒</div>
       <p class="question">Co bylo jako první jídlo, co jsi ode mě kdy dostala?</p>
       <input type="text" id="answer1" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(1)">Odemykám</button>
-      <p class="tip">💡 Tip: Bouchnul jsem se u toho do hlavy o strop 🙃❤️</p>
+      <div id="answer-feedback1" class="feedback-box"></div>
+      <button onclick="checkAnswer(1)">Odemknout</button>
+      <p class="tip">💡 Tip: Ten den jsem se bouchnul do hlavy o strop 🙃❤️</p>
+    </section>
+    <section id="moment1" class="card hidden">
+      <h2>💭 Vzpomínka na snídani</h2>
+      <p>
+        Přinesl jsem ti snídani – chlebík s rajčetem. Byla jsi na školení a já jsem byl hodný kluk co udělal první krok 😌.
+        Dodnes vidím ten tvůj úšklebek když jsem ti dával cigaretu na nabíječku a při tom jsem se bouchl do hlavy 😌❤️.
+      </p>
     </section>
 
     <section id="level2" class="card">
@@ -45,8 +55,16 @@
       <div class="lock" id="lock2">🔒</div>
       <p class="question">Ve kterém městě jsme se poprvé začali bavit natolik, že z toho vznikla láska?</p>
       <input type="text" id="answer2" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(2)">Odemykám</button>
+      <div id="answer-feedback2" class="feedback-box"></div>
+      <button onclick="checkAnswer(2)">Odemknout</button>
       <p class="tip">💡 Tip: Mají tam moc krásné nádraží, které se ti moc líbilo 😌❤️</p>
+    </section>
+    <section id="moment2" class="card hidden">
+      <h2>💭 Vzpomínka na Brno</h2>
+      <p>
+        Brno - pro mě to nejlepší město na světe a to díky tomu že jsem tam potkal tebe. Tvoje pravé já, do kterého jsem se postupem času 
+        zamiloval 🥰❤️
+      </p>
     </section>
 
     <section id="level3" class="card">
@@ -54,8 +72,16 @@
       <div class="lock" id="lock3">🔒</div>
       <p class="question">Jakou hru jsme spolu hráli ve vlaku, když jsme seděli naproti sobě?</p>
       <input type="text" id="answer3" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(3)">Odemykám</button>
-      <p class="tip">💡 Tip: Už jsem chtěl zatahovat závěsy a hrát si na Gynekologa 😈</p>
+      <div id="answer-feedback3" class="feedback-box"></div>
+      <button onclick="checkAnswer(3)">Odemknout</button>
+      <p class="tip">💡 Tip: Bylo to při cestě z Prahy 🥰</p>
+    </section>
+    <section id="moment3" class="card hidden">
+      <h2>💭 Vzpomínka z vlaku</h2>
+      <p>
+        Seděli jsme naproti sobě v prázdném kupé. Já už byl připravený na to zatáhnout závěsy a začít si hrát na gynekologa 😈. 
+        Ty jsi řekla "Slovní fotbal", nevadí 😭❤️
+      </p>
     </section>
 
     <section id="level4" class="card">
@@ -63,11 +89,18 @@
       <div class="lock" id="lock4">🔒</div>
       <p class="question">Co jsem ti nabídl ochutnat na našem prvním rande, i když jsem věděl, že ti to asi nebude chutnat?</p>
       <input type="text" id="answer4" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(4)">Odemykám</button>
+      <div id="answer-feedback4" class="feedback-box"></div>
+      <button onclick="checkAnswer(4)">Odemknout</button>
       <p class="tip">💡 Tip: Byl to zeleninový darebák s fialovým kabátkem 😌❤️</p>
     </section>
+    <section id="moment4" class="card hidden">
+      <h2>💭 Vzpomínka na první rande</h2>
+      <p>
+        Nejlepší první oficiální rande, jaké jsem si mohl kdy přát 🥰. A ten pohled na tebe když jsi do sebe tlačila ten lilek a musela dělat jakože se to dá jíst? 
+        K nezaplacení 😌❤️
+      </p>
+    </section>
 
-    <!-- Level 5: Paměťová hra -->
     <section id="level5" class="card">
       <h2>🧠 Paměťová výzva</h2>
       <p class="question">Seřaď vzpomínky podle toho, jak šly za sebou. Vyber pořadí u každé vzpomínky:</p>
@@ -134,8 +167,15 @@
       <div class="lock" id="lock6">🔒</div>
       <p class="question">Jakou první zprávu jsem od tebe dostal, ze které si děláme srandu do dneška?</p>
       <input type="text" id="answer6" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(6)">Odemykám</button>
+      <div id="answer-feedback6" class="feedback-box"></div>
+      <button onclick="checkAnswer(6)">Odemknout</button>
       <p class="tip">💡 Tip: Ano, bylo to trapný ale jsi rizzmaster 😘</p>
+    </section>
+    <section id="moment6" class="card hidden">
+      <h2>💭 Vzpomínka na tvoji první zprávu</h2>
+      <p>
+        😭 Tady asi ani není moc co napsat lásko 😭❤️. Rozhodně jsi zanechala dojem 😭❤️
+      </p>
     </section>
 
     <section id="level7" class="card">
@@ -143,8 +183,16 @@
       <div class="lock" id="lock7">🔒</div>
       <p class="question">Jaké místo jsme spolu úspěšně (ne)opustili díky šifrám a nápovědám?</p>
       <input type="text" id="answer7" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(7)">Odemykám</button>
+      <div id="answer-feedback7" class="feedback-box"></div>
+      <button onclick="checkAnswer(7)">Odemknout</button>
       <p class="tip">💡 Tip: "Aspoň jsme se nepohádali - Týnuška 2024"</p>
+    </section>
+    <section id="moment7" class="card hidden">
+      <h2>💭 Vzpomínka na únikovou místnost</h2>
+      <p>
+        Honzulka -  světlonoš a Týnuška - Sherlock Holmes. Byla to nejskutečná zábava i když moje úloha byla pouze svítit 😭❤️. Jsem si jistý že až 
+        spolu půjdeme na únikovku znovu, tak ji vyřešíme 😌❤️
+      </p>
     </section>
 
     <section id="level8" class="card">
@@ -152,8 +200,15 @@
       <div class="lock" id="lock8">🔒</div>
       <p class="question">Co jsi mi slíbila udělat, když jsi prohrála v minigolfu?</p>
       <input type="text" id="answer8" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(8)">Odemykám</button>
+      <div id="answer-feedback8" class="feedback-box"></div>
+      <button onclick="checkAnswer(8)">Odemknout</button>
       <p class="tip">💡 Tip: Neboj, na svatbě to vytáhnu 😙</p>
+    </section>
+    <section id="moment8" class="card hidden">
+      <h2>💭 Vzpomínka na sázku z minigolfu</h2>
+      <p>
+        Myslela sis že jsem to za ten rok zapomněl co? 😌❤️ Neboj, tu prezentaci uděláš 😌❤️
+      </p>
     </section>
 
     <section id="level9" class="card">
@@ -161,19 +216,27 @@
       <div class="lock" id="lock9">🔒</div>
       <p class="question">Na jakém místě jsi vyhrála spoustu plyšáků?</p>
       <input type="text" id="answer9" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(9)">Odemykám</button>
+      <div id="answer-feedback9" class="feedback-box"></div>
+      <button onclick="checkAnswer(9)">Odemknout</button>
       <p class="tip">💡 Tip: Porazil jsem tě tam v každé hře co tam byla 😌</p>
+    </section>
+    <section id="moment9" class="card hidden">
+      <h2>💭 Vzpomínka na výhry z arkád</h2>
+      <p>
+        Tady jsme našli tvůj skrytý talent 🥰 Nejlepší vytahovačka plyšáčků na světe 😘❤️ 
+        Za mě jedno z nejzábavnějších randíček, které jsme spolu zatím měli 🥰 4 hodiny utekly jak voda 🥰❤️
+      </p>
     </section>
 
     <!-- Level 10: mini hra se srdíčky -->
     <section id="level10" class="card">
       <h2>Level 10</h2>
       <div class="lock" id="lock10">🔒</div>
-      <p class="question">Posbírej 12 srdíček za 20 sekund! 💖 Tapni/klikni na co nejvíc srdcí.</p>
+      <p class="question">Posbírej 23 srdíček za 20 sekund! 💖.</p>
 
       <div class="hearts-ui">
         <span>⏱️ <span id="hearts-timer">20</span>s</span>
-        <span>💖 <span id="hearts-score">0</span>/12</span>
+        <span>💖 <span id="hearts-score">0</span>/23</span>
       </div>
 
       <div id="hearts-area">
@@ -192,8 +255,7 @@
     <source src="Escape Room Music.mp3" type="audio/mpeg">
     Tvůj prohlížeč nepodporuje přehrávání audia.
   </audio>
-  
-  <button id="toggle-music">🔊 Hudba</button>
+
 
   <section id="finale" class="card">
     <div id="certificate">
