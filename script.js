@@ -104,7 +104,7 @@ function downloadCertificate() {
 }
 
 // Drag & Drop funkce pro paměťovou hru
-const memoryList = document.getElementById("memory-list");
+const memoryList = document.getElementById("level5");
 let draggedItem = null;
 
 if (memoryList) {
@@ -130,7 +130,7 @@ if (memoryList) {
 }
 
 function checkMemoryOrder() {
-  const items = document.querySelectorAll("#memory-list li");
+  const items = document.querySelectorAll("#level5 li");
   const feedback = document.getElementById("memory-feedback");
   let correct = true;
   items.forEach((item, index) => {
@@ -140,7 +140,7 @@ function checkMemoryOrder() {
   });
   if (correct) {
     feedback.textContent = "🎉 Skvělé! Paměť tě nezklamala.";
-    setTimeout(() => flashTransition(4), 1500); // přechod na level 5
+    setTimeout(() => flashTransition(5), 1500); // přechod na level 6
   } else {
     feedback.textContent = "❌ Skoro! Zkus si vzpomenout znovu 💡";
   }
