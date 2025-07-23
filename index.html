@@ -60,13 +60,27 @@
       <button onclick="checkAnswer(4)">Odemykám</button>
       <p class="tip">💡 Tip: Byl to zeleninový darebák s fialovým kabátkem 😌❤️</p>
     </section>
+
+    <section id="memory-game" class="card">
+      <h2>🧠 Paměťová výzva</h2>
+      <p class="question">Seřaď vzpomínky podle toho, jak šly za sebou. Přetáhni je do správného pořadí:</p>
+      <ul id="memory-list">
+        <li draggable="true" data-order="2">Dala jsi mi chleba s rajčetem.</li>
+        <li draggable="true" data-order="1">Napsala jsi mi svoje číslo.</li>
+        <li draggable="true" data-order="3">Poprvé jsme se políbili.</li>
+        <li draggable="true" data-order="5">Porazila jsi mě v minigolfu.</li>
+        <li draggable="true" data-order="4">Spali jsme vedle sebe ve vlaku.</li>
+      </ul>
+      <button onclick="checkMemoryOrder()">Ověřit pořadí</button>
+      <p id="memory-feedback" class="tip"></p>
+    </section>
     <section id="level5" class="card">
       <h2>Level 5</h2>
       <div class="lock" id="lock5">🔒</div>
-      <p class="question">Jakou první zprávu jsi ode mě dostala, ze které si děláme srandu do dneška?</p>
+      <p class="question">Jakou první zprávu jsem od tebe dostal, ze které si děláme srandu do dneška?</p>
       <input type="text" id="answer5" placeholder="Napiš odpověď…" />
       <button onclick="checkAnswer(5)">Odemykám</button>
-      <p class="tip">💡 Tip: Ano, bylo to trapný ale jsi rizzmaster 😘</p>
+      <p class="tip">💡 Tip: Ano, bylyo to trapný ale jsi rizzmaster 😘</p>
     </section>
     <section id="level6" class="card">
       <h2>Level 6</h2>

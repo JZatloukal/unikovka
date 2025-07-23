@@ -91,6 +91,7 @@ function showFinale() {
   finale.classList.add("active");
 }
 
+
 function downloadCertificate() {
   const cert = document.getElementById("certificate");
   html2canvas(cert).then(canvas => {
@@ -100,4 +101,47 @@ function downloadCertificate() {
     link.click();
     document.getElementById("after-download").classList.add("show");
   });
+}
+
+// Drag & Drop funkce pro paměťovou hru
+const memoryList = document.getElementById("memory-list");
+let draggedItem = null;
+
+if (memoryList) {
+  memoryList.addEventListener("dragstart", (e) => {
+    draggedItem = e.target;
+    e.dataTransfer.effectAllowed = "move";
+  });
+
+  memoryList.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    const target = e.target.closest("li");
+    if (target && target !== draggedItem) {
+      const rect = target.getBoundingClientRect();
+      const next = (e.clientY - rect.top) / (rect.bottom - rect.top) > 0.5;
+      memoryList.insertBefore(draggedItem, next ? target.nextSibling : target);
+    }
+  });
+
+  memoryList.addEventListener("drop", (e) => {
+    e.preventDefault();
+    draggedItem = null;
+  });
+}
+
+function checkMemoryOrder() {
+  const items = document.querySelectorAll("#memory-list li");
+  const feedback = document.getElementById("memory-feedback");
+  let correct = true;
+  items.forEach((item, index) => {
+    if (parseInt(item.dataset.order) !== index + 1) {
+      correct = false;
+    }
+  });
+  if (correct) {
+    feedback.textContent = "🎉 Skvělé! Paměť tě nezklamala.";
+    setTimeout(() => flashTransition(4), 1500); // přechod na level 5
+  } else {
+    feedback.textContent = "❌ Skoro! Zkus si vzpomenout znovu 💡";
+  }
 }

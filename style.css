@@ -206,3 +206,29 @@ button:hover {
 .hidden-message.show {
   display: block;
 }
+#memory-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+#memory-list li {
+  background: #ffeaf1;
+  border: 2px dashed #ffbad2;
+  padding: 12px 16px;
+  margin: 10px 0;
+  border-radius: 12px;
+  font-size: 1em;
+  color: #632c47;
+  cursor: grab;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#memory-list li:active {
+  cursor: grabbing;
+}
+
+#memory-list li:hover {
+  background: #ffdbe8;
+  transform: scale(1.02);
+}
