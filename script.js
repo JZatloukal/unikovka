@@ -104,28 +104,10 @@ function downloadCertificate() {
 }
 
 // Drag & Drop funkce pro paměťovou hru
-const memoryList = document.getElementById("level5");
-let draggedItem = null;
-
-if (memoryList) {
-  memoryList.addEventListener("dragstart", (e) => {
-    draggedItem = e.target;
-    e.dataTransfer.effectAllowed = "move";
-  });
-
-  memoryList.addEventListener("dragover", (e) => {
-    e.preventDefault();
-    const target = e.target.closest("li");
-    if (target && target !== draggedItem) {
-      const rect = target.getBoundingClientRect();
-      const next = (e.clientY - rect.top) / (rect.bottom - rect.top) > 0.5;
-      memoryList.insertBefore(draggedItem, next ? target.nextSibling : target);
-    }
-  });
-
-  memoryList.addEventListener("drop", (e) => {
-    e.preventDefault();
-    draggedItem = null;
+const memoryList = document.getElementById("memory-list");
+if (memoryList && typeof Sortable !== "undefined") {
+  Sortable.create(memoryList, {
+    animation: 150
   });
 }
 
