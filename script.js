@@ -4,10 +4,10 @@ function checkAnswer(level) {
     2: ["brno", "v brně", "brně", "do brna"],
     3: ["slovní fotbal", "fotbal", "slovní", "slovní hra", "hra na slova"],
     4: ["lilek", "baklažán", "ten lilek", "kus lilku"],
-    5: ["na tady máš chlapáku"],
-    6: ["úniková místnost", "uniková místnost", "escape room", "escape", "room", "ta únikovka"],
-    7: ["prezentaci", "prezentace", "udělat prezentaci", "slíbila jsem ti prezentaci"],
-    8: ["arkády", "levels", "V arkádách"],
+    6: ["na tady máš chlapáku"],
+    7: ["úniková místnost", "uniková místnost", "escape room", "escape", "room", "ta únikovka"],
+    8: ["prezentaci", "prezentace", "udělat prezentaci", "slíbila jsem ti prezentaci"],
+    9: ["arkády", "levels", "V arkádách"],
   };
   const input = document.getElementById("answer" + level).value.toLowerCase().trim();
   const lock = document.getElementById("lock" + level);
@@ -70,18 +70,18 @@ function startGame() {
 const music = document.getElementById("background-music");
 const musicToggle = document.getElementById("toggle-music");
 
-music.volume = 0.5;
-musicToggle.addEventListener("click", () => {
-  if (music.paused) {
-    music.play().catch((e) => {
-      console.warn("Autoplay blokován:", e);
-    });
-    musicToggle.textContent = "🔊 Hudba";
-  } else {
-    music.pause();
-    musicToggle.textContent = "🔇 Hudba";
-  }
-});
+if (music && musicToggle) {
+  music.volume = 0.5;
+  musicToggle.addEventListener("click", () => {
+    if (music.paused) {
+      music.play().catch((e) => console.warn("Autoplay blokován:", e));
+      musicToggle.textContent = "🔊 Hudba";
+    } else {
+      music.pause();
+      musicToggle.textContent = "🔇 Hudba";
+    }
+  });
+}
 
 function showFinale() {
   const currentCard = document.querySelector(".card.active");
@@ -89,6 +89,11 @@ function showFinale() {
 
   const finale = document.getElementById("finale");
   finale.classList.add("active");
+}
+
+function unlockLevel(n) {
+  const lock = document.getElementById("lock" + n);
+  if (lock) lock.textContent = "🔓";
 }
 
 
@@ -103,27 +108,135 @@ function downloadCertificate() {
   });
 }
 
-// Drag & Drop funkce pro paměťovou hru
-const memoryList = document.getElementById("memory-list");
-if (memoryList && typeof Sortable !== "undefined") {
-  Sortable.create(memoryList, {
-    animation: 150
-  });
-}
-
 function checkMemoryOrder() {
-  const items = document.querySelectorAll("#level5 li");
+  const items = document.querySelectorAll("#memory-quiz li");
   const feedback = document.getElementById("memory-feedback");
   let correct = true;
-  items.forEach((item, index) => {
-    if (parseInt(item.dataset.order) !== index + 1) {
+
+  items.forEach(item => {
+    const select = item.querySelector("select");
+    const expected = select.dataset.order;
+    const actual = select.value;
+    if (expected !== actual) {
       correct = false;
     }
   });
+
   if (correct) {
     feedback.textContent = "🎉 Skvělé! Paměť tě nezklamala.";
-    setTimeout(() => flashTransition(5), 1500); // přechod na level 6
+    unlockLevel(5);
+    const nextButton = document.getElementById("next-level5-btn");
+    if (nextButton) {
+      nextButton.classList.remove("hidden");
+      nextButton.onclick = () => {
+        flashTransition(5);
+      };
+    }
   } else {
     feedback.textContent = "❌ Skoro! Zkus si vzpomenout znovu 💡";
+  }
+}
+
+// ===== Minihra – sbírání srdíček (Level 10) =====
+let heartsTimer = null;
+let heartsSpawnInterval = null;
+let heartsTimeLeft = 20;
+let heartsScore = 0;
+const HEARTS_GOAL = 12;
+
+function startHeartsGame() {
+  const area = document.getElementById('hearts-area');
+  const timerEl = document.getElementById('hearts-timer');
+  const scoreEl = document.getElementById('hearts-score');
+  const feedback = document.getElementById('hearts-feedback');
+  const startBtn = document.getElementById('hearts-start-btn');
+  const nextBtn = document.getElementById('next-level10-btn');
+
+  if (!area || !timerEl || !scoreEl) {
+    console.warn('Level10 elements missing');
+    return;
+  }
+
+  // jistota správného kontextu
+  area.style.position = 'relative';
+
+  // reset
+  area.innerHTML = '';
+  heartsTimeLeft = 20;
+  heartsScore = 0;
+  timerEl.textContent = heartsTimeLeft;
+  scoreEl.textContent = heartsScore;
+  feedback.textContent = '';
+  nextBtn.classList.add('hidden');
+
+  clearInterval(heartsTimer);
+  clearInterval(heartsSpawnInterval);
+
+  startBtn.disabled = true;
+
+  // spawn srdíček
+  heartsSpawnInterval = setInterval(() => spawnHeart(area), 600);
+
+  // odpočet
+  heartsTimer = setInterval(() => {
+    heartsTimeLeft--;
+    timerEl.textContent = heartsTimeLeft;
+    if (heartsTimeLeft <= 0) {
+      clearInterval(heartsTimer);
+      clearInterval(heartsSpawnInterval);
+      endHeartsGame();
+    }
+  }, 1000);
+}
+
+function spawnHeart(area) {
+  const heart = document.createElement('div');
+  heart.className = 'heart-click';
+  heart.textContent = '💖';
+  heart.style.pointerEvents = 'auto';
+  heart.style.zIndex = 5;
+
+  const maxX = area.offsetWidth - 32;
+  const maxY = area.offsetHeight - 32;
+  const x = Math.floor(Math.random() * (maxX > 0 ? maxX : 1));
+  const y = Math.floor(Math.random() * (maxY > 0 ? maxY : 1));
+  heart.style.left = x + 'px';
+  heart.style.top = y + 'px';
+
+  heart.onclick = () => {
+    heartsScore++;
+    const scoreEl = document.getElementById('hearts-score');
+    if (scoreEl) scoreEl.textContent = heartsScore;
+    heart.remove();
+    if (heartsScore >= HEARTS_GOAL) {
+      clearInterval(heartsTimer);
+      clearInterval(heartsSpawnInterval);
+      endHeartsGame(true);
+    }
+  };
+
+  area.appendChild(heart);
+  setTimeout(() => heart.remove(), 1800);
+}
+
+function endHeartsGame(winEarly = false) {
+  clearInterval(heartsTimer);
+  clearInterval(heartsSpawnInterval);
+
+  const feedback = document.getElementById('hearts-feedback');
+  const startBtn = document.getElementById('hearts-start-btn');
+  const nextBtn = document.getElementById('next-level10-btn');
+
+  startBtn.disabled = false;
+
+  if (heartsScore >= HEARTS_GOAL) {
+    feedback.textContent = '🎉 Krása! Máš všechna srdíčka!';
+    unlockLevel(10);
+    nextBtn.classList.remove('hidden');
+    nextBtn.onclick = () => {
+      flashTransition(10);
+    };
+  } else {
+    feedback.textContent = '❌ Ještě to zkus! Chce to víc lásky 💘';
   }
 }

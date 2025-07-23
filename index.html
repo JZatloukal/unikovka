@@ -6,6 +6,9 @@
   <title>Romantická Únikovka</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    .hidden { display: none; }
+  </style>
 </head>
 <body>
   <section id="intro" class="card active">
@@ -16,7 +19,7 @@
       Únikovku. Ale ne ledajakou! Je celá o nás. 🫶
     </p>
     <p>
-      Čeká tě 8 zámků. Každý zámek se odemkne jen správnou odpovědí na otázku z našeho společného příběhu.<br>
+      Čeká tě pár zámků. Každý zámek se odemkne jen správnou odpovědí na otázku z našeho společného příběhu.<br>
       Vzpomínky, momenty, trapasy, výhry... Všechno, co tvoří nás. 🧠❤️
     </p>
     <p>
@@ -24,7 +27,9 @@
     </p>
     <button onclick="startGame()">Začít hru</button>
   </section>
+
   <div class="hearts"></div>
+
   <main>
     <section id="level1" class="card">
       <h2>Level 1</h2>
@@ -52,6 +57,7 @@
       <button onclick="checkAnswer(3)">Odemykám</button>
       <p class="tip">💡 Tip: Už jsem chtěl zatahovat závěsy a hrát si na Gynekologa 😈</p>
     </section>
+
     <section id="level4" class="card">
       <h2>Level 4</h2>
       <div class="lock" id="lock4">🔒</div>
@@ -61,50 +67,122 @@
       <p class="tip">💡 Tip: Byl to zeleninový darebák s fialovým kabátkem 😌❤️</p>
     </section>
 
+    <!-- Level 5: Paměťová hra -->
     <section id="level5" class="card">
       <h2>🧠 Paměťová výzva</h2>
-      <p class="question">Seřaď vzpomínky podle toho, jak šly za sebou. Přetáhni je do správného pořadí:</p>
-      <ul id="memory-list">
-        <li draggable="true" data-order="2">Dala jsi mi chleba s rajčetem.</li>
-        <li draggable="true" data-order="1">Napsala jsi mi svoje číslo.</li>
-        <li draggable="true" data-order="3">Poprvé jsme se políbili.</li>
-        <li draggable="true" data-order="5">Porazila jsi mě v minigolfu.</li>
-        <li draggable="true" data-order="4">Spali jsme vedle sebe ve vlaku.</li>
+      <p class="question">Seřaď vzpomínky podle toho, jak šly za sebou. Vyber pořadí u každé vzpomínky:</p>
+      <ul id="memory-quiz">
+        <li><label>Přinesl jsem ti chleba s rajčetem 💕</label>
+          <select data-order="2">
+            <option value="">–</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </li>
+        <li><label>Napsala jsi mi svoje číslo 😘</label>
+          <select data-order="1">
+            <option value="">–</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </li>
+        <li><label>Poprvé jsme se políbili 😍</label>
+          <select data-order="5">
+            <option value="">–</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </li>
+        <li><label>Porazil jsem tě v minigolfu 😏</label>
+          <select data-order="4">
+            <option value="">–</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </li>
+        <li><label>První obejmutí 🫂</label>
+          <select data-order="3">
+            <option value="">–</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </li>
       </ul>
       <button onclick="checkMemoryOrder()">Ověřit pořadí</button>
+      <button id="next-level5-btn" class="hidden">➡️ Pokračovat</button>
+      <div id="lock5" class="lock">🔒</div>
       <p id="memory-feedback" class="tip"></p>
     </section>
+
     <section id="level6" class="card">
-      <h2>Level 5</h2>
-      <div class="lock" id="lock5">🔒</div>
-      <p class="question">Jakou první zprávu jsem od tebe dostal, ze které si děláme srandu do dneška?</p>
-      <input type="text" id="answer5" placeholder="Napiš odpověď…" />
-      <button onclick="checkAnswer(5)">Odemykám</button>
-      <p class="tip">💡 Tip: Ano, bylyo to trapný ale jsi rizzmaster 😘</p>
-    </section>
-    <section id="level7" class="card">
       <h2>Level 6</h2>
       <div class="lock" id="lock6">🔒</div>
-      <p class="question">Jaké místo jsme spolu úspěšně (ne)opustili díky šifrám a nápovědám?</p>
+      <p class="question">Jakou první zprávu jsem od tebe dostal, ze které si děláme srandu do dneška?</p>
       <input type="text" id="answer6" placeholder="Napiš odpověď…" />
       <button onclick="checkAnswer(6)">Odemykám</button>
-      <p class="tip">💡 Tip: "Aspoň jsme se nepohádali - Týnuška 2024"</p>
+      <p class="tip">💡 Tip: Ano, bylo to trapný ale jsi rizzmaster 😘</p>
     </section>
-    <section id="level8" class="card">
+
+    <section id="level7" class="card">
       <h2>Level 7</h2>
       <div class="lock" id="lock7">🔒</div>
-      <p class="question">Co jsi mi slíbila udělat, když jsi prohrála v minigolfu?</p>
+      <p class="question">Jaké místo jsme spolu úspěšně (ne)opustili díky šifrám a nápovědám?</p>
       <input type="text" id="answer7" placeholder="Napiš odpověď…" />
       <button onclick="checkAnswer(7)">Odemykám</button>
-      <p class="tip">💡 Tip: Neboj, na svatbě to vytáhnu 😙</p>
+      <p class="tip">💡 Tip: "Aspoň jsme se nepohádali - Týnuška 2024"</p>
     </section>
-    <section id="level9" class="card">
+
+    <section id="level8" class="card">
       <h2>Level 8</h2>
       <div class="lock" id="lock8">🔒</div>
-      <p class="question">Na jakém místě jsi vyhrála spoustu plyšáků?</p>
+      <p class="question">Co jsi mi slíbila udělat, když jsi prohrála v minigolfu?</p>
       <input type="text" id="answer8" placeholder="Napiš odpověď…" />
       <button onclick="checkAnswer(8)">Odemykám</button>
+      <p class="tip">💡 Tip: Neboj, na svatbě to vytáhnu 😙</p>
+    </section>
+
+    <section id="level9" class="card">
+      <h2>Level 9</h2>
+      <div class="lock" id="lock9">🔒</div>
+      <p class="question">Na jakém místě jsi vyhrála spoustu plyšáků?</p>
+      <input type="text" id="answer9" placeholder="Napiš odpověď…" />
+      <button onclick="checkAnswer(9)">Odemykám</button>
       <p class="tip">💡 Tip: Porazil jsem tě tam v každé hře co tam byla 😌</p>
+    </section>
+
+    <!-- Level 10: mini hra se srdíčky -->
+    <section id="level10" class="card">
+      <h2>Level 10</h2>
+      <div class="lock" id="lock10">🔒</div>
+      <p class="question">Posbírej 12 srdíček za 20 sekund! 💖 Tapni/klikni na co nejvíc srdcí.</p>
+
+      <div class="hearts-ui">
+        <span>⏱️ <span id="hearts-timer">20</span>s</span>
+        <span>💖 <span id="hearts-score">0</span>/12</span>
+      </div>
+
+      <div id="hearts-area">
+        <!-- sem budou létat srdíčka -->
+      </div>
+
+      <button id="hearts-start-btn" onclick="startHeartsGame()">Začít lovit srdíčka</button>
+      <p id="hearts-feedback" class="tip"></p>
+      <button id="next-level10-btn" class="hidden">➡️ Pokračovat</button>
     </section>
   </main>
 
@@ -131,10 +209,7 @@
     </div>
   </section>
 
-</section>
-
   <!-- html2canvas knihovna pro stažení jako obrázek -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </body>
 </html>
